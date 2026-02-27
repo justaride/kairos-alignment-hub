@@ -66,8 +66,8 @@ export const publications: Publication[] = [
   },
   {
     title: 'NS Four Pillars Model',
-    author: 'Natural State',
-    year: 2022,
+    author: '',
+    year: 0,
     type: 'Strukturert metodikk for steds-/samfunnstransformasjon'
   }
 ]
@@ -84,8 +84,8 @@ export const standards: Standard[] = [
     type: 'FN-klimakonferanse'
   },
   {
-    name: 'ISO/TC 323 (Jakarta)',
-    scope: 'Sirkulær økonomi-standarder',
+    name: 'Jakarta ISO',
+    scope: 'ISO-standardisering',
     type: 'Internasjonal standardisering'
   }
 ]

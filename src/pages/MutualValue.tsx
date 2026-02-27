@@ -39,54 +39,34 @@ export function MutualValue() {
       </section>
 
       <section className="card-section">
-        <h2>Komplementaritetsgap</h2>
+        <h2>Hva KAIROS eksplisitt søker fra partnere</h2>
         <p className="section-lead">
-          Hva UiO/SINTEF allerede har vs. hva NS tilfører — argumentet for hvorfor NS fyller et gap.
+          Fra KAIROS-konseptnotatet: hva de trenger fra industripartnere.
         </p>
         <div className="table-wrapper">
           <table>
             <thead>
               <tr>
-                <th>Område</th>
-                <th>UiO/SINTEF har</th>
-                <th>NS bringer</th>
+                <th>KAIROS-krav</th>
+                <th>NS-dekning</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>AI-forskning</strong></td>
-                <td>Multi-agentisk AI-teori, forskningsmetodikk</td>
-                <td>Deployed single-agent RAG-systemer, produksjonsdata-pipelines</td>
+                <td><strong>Dyp domenekunnskap innen klima, urban design, arkitektur, sirkulær økonomi</strong></td>
+                <td>21+ plattformer på tvers av disse domenene, publisert metodikk (Holthe 2022)</td>
               </tr>
               <tr>
-                <td><strong>Klimadata</strong></td>
-                <td>Klimamodellering, AMOC-forskning, tipping points</td>
-                <td>Satellittverifisering, GFW-integrasjon, geospatiale pipelines</td>
+                <td><strong>Aktive praksisporteføljer som produserer reelle data for KAWP</strong></td>
+                <td>Live datapipelines: satellitt, regulatorisk, kommunal, finansiering — allerede i produksjon</td>
               </tr>
               <tr>
-                <td><strong>Byplanlegging</strong></td>
-                <td>Akademisk urban teori, design thinking</td>
-                <td>4 live beslutningsstøtte-dashbord for norske kommuner</td>
+                <td><strong>Personalkostnadsforpliktelse (Grønn Plattform medfinansieringsmodell)</strong></td>
+                <td>GP 2025-erfaring (BuildGreenSpace) — kjent med medfinansieringsmodellen</td>
               </tr>
               <tr>
-                <td><strong>Sirkulær økonomi</strong></td>
-                <td>Forskningsmiljøer, publiseringskanal</td>
-                <td>80 prosjekter, B2B markedsplass, 42-partner styringsnettverk</td>
-              </tr>
-              <tr>
-                <td><strong>Regulatorisk</strong></td>
-                <td>Policy-analyse, juridisk rammeverk</td>
-                <td>Kunnskapsgraf med 2 290 entiteter, automatisert regulatorisk navigasjon</td>
-              </tr>
-              <tr>
-                <td><strong>Infrastruktur</strong></td>
-                <td>Institusjonell IT, forskningsinfra</td>
-                <td>21+ apper på lean infra (~€20/mnd), rask iterasjon, GitHub→produksjon</td>
-              </tr>
-              <tr>
-                <td><strong>Nettverk</strong></td>
-                <td>Akademiske nettverk, konferanser</td>
-                <td>NCH (42 partnere, 15+ arbeidsgrupper), CEN WG4, COP-engasjement</td>
+                <td><strong>Villighet til å bruke arbeidet som testplattformer for agentisk AI-drevet foresight</strong></td>
+                <td>Coffee & Forest (RAG + satellitt), PlanVarde (kunnskapsgraf), Perronggården (datapipeline) som kandidater</td>
               </tr>
             </tbody>
           </table>

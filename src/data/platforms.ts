@@ -29,7 +29,7 @@ export const platforms: Platform[] = [
   },
   {
     name: 'Perronggården',
-    subtitle: 'Byplanleggings-intelligensplattform',
+    subtitle: 'Konseptskisse-plattform',
     description: 'Prosjektdashboard med innsiktsbibliotek, interessenthåndtering, KPI-sporing, dokumentbehandling og automatiserte QA-gates for Kolbotn sentrum.',
     url: 'https://perronggarden.naturalstateproject.com',
     stack: ['React 19', 'TypeScript', 'Vite', 'Supabase', 'PostgreSQL', 'Leaflet'],

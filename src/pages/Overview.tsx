@@ -1,5 +1,3 @@
-import { team } from '../data/team'
-
 export function Overview() {
   return (
     <div className="page">
@@ -97,19 +95,6 @@ export function Overview() {
             <div className="timeline-date">H2 2029</div>
             <div className="timeline-content">Prosjektavslutning (estimert)</div>
           </div>
-        </div>
-      </section>
-
-      <section className="card-section">
-        <h2>Team</h2>
-        <div className="team-grid">
-          {team.map(m => (
-            <div className="team-card" key={m.name}>
-              <div className="team-avatar">{m.name.split(' ').map(n => n[0]).join('')}</div>
-              <div className="team-name">{m.name}</div>
-              <div className="team-role">{m.role}</div>
-            </div>
-          ))}
         </div>
       </section>
 

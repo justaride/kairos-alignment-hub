@@ -45,8 +45,8 @@ export function Research() {
               <h3>{p.title}</h3>
               <p>{p.type}</p>
               <div className="pub-meta">
-                <span>{p.author}</span>
-                <span>{p.year}</span>
+                {p.author && <span>{p.author}</span>}
+                {p.year > 0 && <span>{p.year}</span>}
               </div>
             </div>
           ))}
