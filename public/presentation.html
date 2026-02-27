@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natural State × KAIROS — Kapasiteter og alignment for Grønn Plattform 2026</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --charcoal: #1a1a2e;
+      --dark: #16213e;
+      --accent: #0f3460;
+      --accent-light: #e2e8f4;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --green: #059669;
+      --green-light: #ecfdf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--charcoal);
+      background: var(--bg);
+      font-size: 11pt;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 28mm 24mm 24mm 24mm;
+      page-break-after: always;
+      position: relative;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* Cover page */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 297mm;
+      padding: 40mm 28mm;
+    }
+
+    .cover-label {
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .cover h1 {
+      font-size: 38pt;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .cover h1 span {
+      color: var(--accent);
+    }
+
+    .cover h2 {
+      font-size: 14pt;
+      font-weight: 400;
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 400px;
+      line-height: 1.5;
+    }
+
+    .cover-meta {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .cover-meta strong {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .cover-line {
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    /* Section headers */
+    .section-number {
+      font-size: 9pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    h2 {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    h3 {
+      font-size: 12pt;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+    }
+
+    .lead {
+      font-size: 11.5pt;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Key numbers strip */
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .number-card {
+      text-align: center;
+      padding: 16px 8px;
+      background: var(--bg-subtle);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .number-card .value {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .number-card .label {
+      font-size: 8pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Team grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .team-member {
+      padding: 10px 12px;
+      background: var(--bg-subtle);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .team-member .name {
+      font-weight: 600;
+      font-size: 9.5pt;
+      color: var(--charcoal);
+    }
+
+    .team-member .role {
+      font-size: 8.5pt;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Alignment table */
+    .alignment-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 9.5pt;
+    }
+
+    .alignment-table th {
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .alignment-table th:first-child {
+      border-radius: 6px 0 0 0;
+      width: 35%;
+    }
+
+    .alignment-table th:last-child {
+      border-radius: 0 6px 0 0;
+    }
+
+    .alignment-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .alignment-table tr:nth-child(even) td {
+      background: var(--bg-subtle);
+    }
+
+    .alignment-table tr:last-child td:first-child {
+      border-radius: 0 0 0 6px;
+    }
+
+    .alignment-table tr:last-child td:last-child {
+      border-radius: 0 0 6px 0;
+    }
+
+    .req-label {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .tech-tag {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 8pt;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 1px 5px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    /* Platform cards */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .platform-card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+    }
+
+    .platform-card h4 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 2px;
+    }
+
+    .platform-card .subtitle {
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .platform-card p {
+      font-size: 9pt;
+      color: #475569;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .platform-card .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .stat-chip {
+      font-size: 7.5pt;
+      font-weight: 600;
+      padding: 3px 8px;
+      background: var(--green-light);
+      color: var(--green);
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    /* Relationship cards */
+    .rel-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .rel-card {
+      padding: 16px 18px;
+      border-left: 3px solid var(--accent);
+      background: var(--bg-subtle);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .rel-card h4 {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .rel-card .tag {
+      font-size: 7.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--green);
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .rel-card p {
+      font-size: 9pt;
+      color: #475569;
+      margin-bottom: 0;
+    }
+
+    /* Research table */
+    .research-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 9pt;
+    }
+
+    .research-table th {
+      text-align: left;
+      padding: 8px 10px;
+      background: var(--bg-subtle);
+      border-bottom: 2px solid var(--border);
+      font-weight: 600;
+      color: var(--charcoal);
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .research-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      color: #475569;
+    }
+
+    /* Value exchange */
+    .value-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .value-col {
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .value-col.gives {
+      background: var(--accent-light);
+      border-color: var(--accent);
+    }
+
+    .value-col.gets {
+      background: var(--green-light);
+      border-color: var(--green);
+    }
+
+    .value-col h3 {
+      font-size: 10pt;
+      margin-bottom: 12px;
+    }
+
+    .value-col.gives h3 {
+      color: var(--accent);
+    }
+
+    .value-col.gets h3 {
+      color: var(--green);
+    }
+
+    .value-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .value-col ul li {
+      font-size: 9pt;
+      color: #334155;
+      padding: 4px 0 4px 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .value-col ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* CTA / next steps */
+    .cta-box {
+      padding: 24px;
+      background: var(--bg-subtle);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 16px 0;
+    }
+
+    .cta-box h3 {
+      font-size: 11pt;
+      margin-bottom: 10px;
+    }
+
+    .cta-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cta-box ul li {
+      font-size: 9.5pt;
+      color: #334155;
+      padding: 5px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .cta-box ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .contact-card {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .contact-card .name {
+      font-weight: 600;
+      font-size: 10pt;
+      color: var(--charcoal);
+    }
+
+    .contact-card .title {
+      font-size: 8.5pt;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .contact-card .email {
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    /* Page footer */
+    .page-footer {
+      position: absolute;
+      bottom: 18mm;
+      left: 24mm;
+      right: 24mm;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #94a3b8;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: white;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 20mm 18mm 18mm 18mm;
+        page-break-after: always;
+      }
+
+      .page:last-child {
+        page-break-after: avoid;
+      }
+
+      .cover {
+        padding: 35mm 22mm;
+        min-height: auto;
+        height: 100vh;
+      }
+
+      .page-footer {
+        position: fixed;
+        bottom: 10mm;
+        left: 18mm;
+        right: 18mm;
+      }
+
+      .number-card, .platform-card, .rel-card, .value-col, .contact-card, .cta-box, .team-member {
+        break-inside: avoid;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    }
+
+    /* Screen helper */
+    @media screen {
+      body {
+        background: #f1f5f9;
+        padding: 20px 0;
+      }
+
+      .page {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+        border-radius: 2px;
+        margin-bottom: 24px;
+        background: white;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1: COVER -->
+  <div class="page cover">
+    <div class="cover-label">Grønn Plattform 2026</div>
+    <div class="cover-line"></div>
+    <h1>Natural State <span>×</span> KAIROS</h1>
+    <h2>Kapasiteter og alignment for Grønn Plattform 2026</h2>
+    <div class="cover-meta">
+      <strong>Utarbeidet for</strong> UiO / SINTEF — KAIROS-konsortiet<br>
+      <strong>Dato</strong> 27. februar 2026<br>
+      <strong>Fra</strong> Natural State AS
+    </div>
+  </div>
+
+  <!-- PAGE 2: OM NATURAL STATE -->
+  <div class="page">
+    <div class="section-number">01</div>
+    <h2>Om Natural State</h2>
+    <p class="lead">
+      Natural State er et strategibyrå for stedsutvikling, bærekraftig økonomi og sirkulær omstilling. Vi bygger dataplattformer som gjør fragmentert kunnskap — fra regulatoriske rammeverk og klimadata til kommunale planer og byggeprosjekter — om til strukturert beslutningsstøtte.
+    </p>
+    <p>
+      Vi driver Nordic Circular Hotspot, et nordisk governance-nettverk for sirkulær økonomi, og har levert forskningsprosjekter for Forskningsrådet, JPI Urban Europe og Horizon Europe. Vår tilnærming kombinerer strategisk rådgivning med produksjonsferdige AI- og dataplattformer.
+    </p>
+
+    <div class="numbers-grid">
+      <div class="number-card">
+        <span class="value">21+</span>
+        <span class="label">Produksjons-plattformer</span>
+      </div>
+      <div class="number-card">
+        <span class="value">42</span>
+        <span class="label">NCH-partnere</span>
+      </div>
+      <div class="number-card">
+        <span class="value">15+</span>
+        <span class="label">Transisjons-grupper</span>
+      </div>
+      <div class="number-card">
+        <span class="value">80</span>
+        <span class="label">Nordiske sirkulær-byggeprosjekter</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Teamet</h3>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="name">Einar Kleppe Holthe</div>
+        <div class="role">CEO og strategisk leder</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Cathrine Barth</div>
+        <div class="role">Leder for sirkulær økonomi</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Jan Thomas Odegard</div>
+        <div class="role">Strategisk utvikler, senior PM</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Hélène Arja Eie Falstad</div>
+        <div class="role">Prosjektleder og strateg</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Oda Solberg</div>
+        <div class="role">Prosjektleder og rådgiver</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Martin Hagen</div>
+        <div class="role">Prosjektleder</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Maren Lundhaug</div>
+        <div class="role">Forsker</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Villeman Vinje</div>
+        <div class="role">Økonom og strateg</div>
+      </div>
+      <div class="team-member">
+        <div class="name">Gabriel Boen</div>
+        <div class="role">Tech lead, fullstack-utvikler</div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>2</span>
+    </div>
+  </div>
+
+  <!-- PAGE 3: ALIGNMENT TABLE -->
+  <div class="page">
+    <div class="section-number">02</div>
+    <h2>Hva KAIROS trenger → Hva NS har</h2>
+    <p class="lead">KAIROS søker partnere med dyp domenekunnskap, aktive praksisporteføljer og reelle data. Vi har bygget produksjonsplattformer for hvert av disse behovene.</p>
+
+    <table class="alignment-table">
+      <thead>
+        <tr>
+          <th>KAIROS-behov</th>
+          <th>NS-kapasitet og evidens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="req-label">Agentic AI for klimadata</span></td>
+          <td><span class="tech-tag">Coffee & Forest</span> — RAG-drevet EUDR-compliance: satelittverifisering via Global Forest Watch + Sentinel Hub, pgvector semantisk søk, PostGIS romlige spørringer. Produksjonsklar.</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Byplanlegging og beslutningsstøtte</span></td>
+          <td>Fire live dashboards: <span class="tech-tag">Filipstad</span> <span class="tech-tag">Tangenkaia</span> <span class="tech-tag">Perronggården</span> <span class="tech-tag">Sundland</span> — 181 verifiserte innsikter, 15 interessenter, 20 KPI-er med datagap-sporing.</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Semantisk søk i fragmentert data</span></td>
+          <td><span class="tech-tag">PlanVarde</span> — Knowledge graph: 2 290 entiteter, 1 705 relasjoner, 381 seksjoner PBL 2008 + TEK17. Graf-algoritmer (BFS, Dijkstra, sentralitetsanalyse).</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Sirkulær økonomi-intelligens</span></td>
+          <td><span class="tech-tag">Nordic Circular Buildings</span> — 80 prosjekter, 5 land, 520+ forskningsdokumenter. <span class="tech-tag">FYRA</span> — B2B gjenbruksplattform, 50+ operatører. CO₂-reduksjoner: 28–97%.</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Governance-nettverk</span></td>
+          <td><span class="tech-tag">NCH</span> — 42 partnere, 15+ transisjonsgrupper. CEN WG4, COP28/COP30. Holland Circular Hotspot, Roskilde, SINTEF, Hub For Ocean blant partnere.</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Forskningserfaring</span></td>
+          <td>DUT (Forskningsrådet), Trustmaking (JPI), CodeCoex (Horizon Europe), SINTEF SirkOff. Publisert: Holthe 2022 (Springer Nature). NS Four Pillars-modellen.</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Rask prototyping og skalering</span></td>
+          <td>21+ apper på Hetzner VPS via Coolify + Cloudflare. GitHub → produksjon på minutter. Infrastrukturkostnad: ~€20/mnd. Forskningsprosjekt-vennlig tempo.</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>3</span>
+    </div>
+  </div>
+
+  <!-- PAGE 4: EKSISTERENDE RELASJONER -->
+  <div class="page">
+    <div class="section-number">03</div>
+    <h2>Eksisterende relasjoner</h2>
+    <p class="lead">NS er ikke en ukjent søker. Vi har etablerte relasjoner med begge hovedpartnerne i KAIROS-konsortiet.</p>
+
+    <div class="rel-grid">
+      <div class="rel-card">
+        <div class="tag">Aktivt samarbeid</div>
+        <h4>SINTEF SirkOff — Sirkulære bygg i offentlig sektor</h4>
+        <p>Pågående klientprosjekt med SINTEF om sirkulær økonomi i offentlige byggeprosjekter. IPO 2025-søknad innsendt. Felles partnermøter, teampresentasjoner og intensjonsavtaler. Dette er en varm relasjon — ikke kald introduksjon.</p>
+      </div>
+      <div class="rel-card">
+        <div class="tag">Programerfaring</div>
+        <h4>Grønn Plattform 2025 — BuildGreenSpace</h4>
+        <p>NS søkte Grønn Plattform 2025 med BuildGreenSpace-konsortiet. Vi kjenner programformatet, samfinansieringsmodellen og partnerstrukturen. KAIROS er ikke vår første GP-prosess.</p>
+      </div>
+      <div class="rel-card">
+        <div class="tag">Nettverk</div>
+        <h4>Nordic Circular Hotspot — UiO/SINTEF-referanser</h4>
+        <p>Nordic Circular Construction Phase II-søknad til Nordic Innovation inkluderer referanser til UiO og SINTEF. 42 signerte partnerskapsavtaler. SINTEF er navngitt NCH-partner. NCH gir direkte disseminering og stakeholder-tilgang.</p>
+      </div>
+      <div class="rel-card">
+        <div class="tag">Internasjonalt</div>
+        <h4>EU og nordiske forskningsprogrammer</h4>
+        <p>DUT Forskningsrådet (Oslo/Wien/Panevėžys/Riga), JPI Urban Europe Trustmaking, Horizon Europe CodeCoex, NEB 2025. NS har erfaring med flernasjonale forskningskonsortier og leverer innenfor strukturerte rammeverk.</p>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>4</span>
+    </div>
+  </div>
+
+  <!-- PAGE 5: PLATTFORM-HØYDEPUNKTER -->
+  <div class="page">
+    <div class="section-number">04</div>
+    <h2>Plattform-høydepunkter</h2>
+    <p class="lead">Fire plattformer som demonstrerer direkte KAIROS-relevans — fra agentic AI og knowledge graphs til urban intelligens og sirkulær database.</p>
+
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h4>Coffee & Forest</h4>
+        <div class="subtitle">Agentic AI for klima- og regulatorisk compliance</div>
+        <p>RAG-drevet EUDR-plattform som innhenter fragmenterte landbruksdata (Excel, CSV, Shapefiles), verifiserer gårdsplott mot avskogingslag via Global Forest Watch og Sentinel Hub, og genererer EU Due Diligence Statements.</p>
+        <div class="stats">
+          <span class="stat-chip">pgvector + PostGIS</span>
+          <span class="stat-chip">Satelittdata</span>
+          <span class="stat-chip">RAG-assistent</span>
+          <span class="stat-chip">NestJS + React</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h4>PlanVarde</h4>
+        <div class="subtitle">Knowledge graph for regulatorisk sense-making</div>
+        <p>Kunnskapsgraf over norsk planlovgivning. Graf-algoritmer for sentralitetsanalyse og community-deteksjon. Prosessmodul for reguleringsplan (12 faser) og byggesak (8 faser). Risikovurdering mot myndigheter.</p>
+        <div class="stats">
+          <span class="stat-chip">2 290 entiteter</span>
+          <span class="stat-chip">1 705 relasjoner</span>
+          <span class="stat-chip">381 lovavsnitt</span>
+          <span class="stat-chip">BFS/Dijkstra</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h4>Perronggården</h4>
+        <div class="subtitle">Urban planlegging og beslutningsstøtte</div>
+        <p>Konseptskisseplattform for Kolbotn sentrum. Innsiktsbibliotek med dokumentekstraksjon, stakeholder-styring, KPI-sporing med datagap, og automatiserte QA-porter for datakvalitet.</p>
+        <div class="stats">
+          <span class="stat-chip">181 innsikter</span>
+          <span class="stat-chip">23 dokumenter</span>
+          <span class="stat-chip">179 sider</span>
+          <span class="stat-chip">20 KPI-er</span>
+        </div>
+      </div>
+      <div class="platform-card">
+        <h4>Nordic Circular Buildings</h4>
+        <div class="subtitle">Nordisk database for sirkulære byggeprosjekter</div>
+        <p>Den mest omfattende databasen over sirkulære byggeprosjekter i Norden. Interaktivt kart, materialstrømvisualisering, PDF-siteringer med sidelenker. Dokumenterte CO₂-reduksjoner fra 28 til 97%.</p>
+        <div class="stats">
+          <span class="stat-chip">80 prosjekter</span>
+          <span class="stat-chip">5 land</span>
+          <span class="stat-chip">48 case-studier</span>
+          <span class="stat-chip">520+ dokumenter</span>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>5</span>
+    </div>
+  </div>
+
+  <!-- PAGE 6: FORSKNINGSERFARING -->
+  <div class="page">
+    <div class="section-number">05</div>
+    <h2>Forskningserfaring og metodikk</h2>
+    <p class="lead">NS leverer innenfor strukturerte forskningsrammeverk — fra nasjonalt til EU-nivå. Vi har publisert metode, deltatt i standardisering, og opererer et nordisk governance-nettverk.</p>
+
+    <h3>Finansierte forskningsprosjekter</h3>
+    <table class="research-table">
+      <thead>
+        <tr>
+          <th>Prosjekt</th>
+          <th>Program</th>
+          <th>Fokus</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DUT Inclusive City</strong></td>
+          <td>Forskningsrådet (DUT)</td>
+          <td>Inkluderende stedsutvikling, 15-minutters by</td>
+          <td>Aktiv</td>
+        </tr>
+        <tr>
+          <td><strong>Trustmaking</strong></td>
+          <td>JPI Urban Europe</td>
+          <td>Nabolagsdemokrati, sivil tillit</td>
+          <td>Aktiv</td>
+        </tr>
+        <tr>
+          <td><strong>CodeCoex</strong></td>
+          <td>Horizon Europe</td>
+          <td>Biodiversitet + sirkulær økonomi</td>
+          <td>Stage 1 evaluert</td>
+        </tr>
+        <tr>
+          <td><strong>NEB 2025</strong></td>
+          <td>New European Bauhaus</td>
+          <td>Bærekraft, inkludering, estetikk</td>
+          <td>Søkt</td>
+        </tr>
+        <tr>
+          <td><strong>SINTEF SirkOff</strong></td>
+          <td>IPO 2025</td>
+          <td>Sirkulære bygg, offentlig sektor</td>
+          <td>Aktiv klient</td>
+        </tr>
+        <tr>
+          <td><strong>BuildGreenSpace</strong></td>
+          <td>Grønn Plattform 2025</td>
+          <td>Bærekraftig byggesektor</td>
+          <td>Søkt</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>Publisert metode</h3>
+    <table class="research-table">
+      <thead>
+        <tr>
+          <th>Publikasjon</th>
+          <th>Detalj</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Holthe 2022</strong></td>
+          <td>"The New Natural State of the Market" — bokkapittel i <em>The Kyoto Post-COVID Manifesto For Global Economics</em>, Springer Nature</td>
+        </tr>
+        <tr>
+          <td><strong>NS Four Pillars Model</strong></td>
+          <td>Strukturert metodikk for steds- og samfunnstransformasjon: naturressurs-, menneskelig, sosial og markedssfære</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>Standardisering og policy</h3>
+    <table class="research-table">
+      <thead>
+        <tr>
+          <th>Arena</th>
+          <th>NS-deltakelse</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>CEN WG4</strong></td>
+          <td>Europeisk standardisering — sirkulære forretningsmodeller</td>
+        </tr>
+        <tr>
+          <td><strong>COP28 / COP30</strong></td>
+          <td>NCH-representasjon, sirkulær økonomi policy-dialog</td>
+        </tr>
+        <tr>
+          <td><strong>ISO/TC 323</strong></td>
+          <td>Jakarta ISO — internasjonal standardisering for sirkulær økonomi</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>6</span>
+    </div>
+  </div>
+
+  <!-- PAGE 7: GJENSIDIG VERDI -->
+  <div class="page">
+    <div class="section-number">06</div>
+    <h2>Gjensidig verdi</h2>
+    <p class="lead">KAIROS og NS utfyller hverandre: NS bringer produksjonsplattformer, data og nettverk — KAIROS bringer forskningsmiljø, multi-agent AI og akademisk ramme.</p>
+
+    <div class="value-columns">
+      <div class="value-col gives">
+        <h3>Hva NS tilfører KAIROS</h3>
+        <ul>
+          <li>Domenekunnskap: klimacompliance, byplanlegging, sirkulær konstruksjon, regulatoriske rammeverk</li>
+          <li>Live plattformer som testbed for KAWP-integrasjon (Coffee & Forest, PlanVarde, Perronggården, Nordic Circular Buildings)</li>
+          <li>Rask prototyping-kapasitet for foresight-demonstratorer</li>
+          <li>Datapipelines i produksjon: satelitt, regulatorisk, kommunal, finansiering</li>
+          <li>Varm SINTEF-relasjon (SirkOff) for smidig konsortie-integrasjon</li>
+          <li>NCH-nettverk (42 partnere, 15+ arbeidsgrupper) som disseminerings- og stakeholder-kanal</li>
+          <li>Forskningsleveranse-erfaring på tvers av norske, nordiske og EU-programmer</li>
+        </ul>
+      </div>
+      <div class="value-col gets">
+        <h3>Hva KAIROS akselererer for NS</h3>
+        <ul>
+          <li>Forskningspartnerskap med UiO og SINTEF — akademisk troverdighet, fagfellevurdering, PhD/postdoc-kapasitet</li>
+          <li>Grønn Plattform-samfinansiering for arbeid allerede i NS-roadmap</li>
+          <li>Akademisk ramme som hever NS-plattformene og gir publiseringspotensial</li>
+          <li>Multi-agent AI-metodikk for å gå fra enkelt-agent RAG til orkestrerte systemer</li>
+          <li>Tilgang til klimadatasett: AMOC, tipping points, klimamodellering</li>
+          <li>Posisjonering i krysset AI + klima + urban design med navngitt forskningskontekst</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Komplementaritet — gap NS fyller</h3>
+    <table class="alignment-table" style="font-size: 9pt;">
+      <thead>
+        <tr>
+          <th>Kapasitet</th>
+          <th>UiO/SINTEF</th>
+          <th>Natural State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="req-label">Produksjonsferdige AI-plattformer</span></td>
+          <td>Forskning og prototyper</td>
+          <td>21+ live apper med RAG, knowledge graph, geospatial</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Byplanleggingspraksis</span></td>
+          <td>Akademisk urban forskning</td>
+          <td>4 live dashboards for norske kommuner og utviklere</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">CE governance-nettverk</span></td>
+          <td>Institutionelle relasjoner</td>
+          <td>NCH: 42 partnere, CEN WG4, COP28/30, ISO/TC 323</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Sanntids datapipelines</span></td>
+          <td>Datasett og modeller</td>
+          <td>Satelitt, regulatorisk, kommunal og finansieringsdata i produksjon</td>
+        </tr>
+        <tr>
+          <td><span class="req-label">Rask iterasjon</span></td>
+          <td>Langsiktig forskning</td>
+          <td>GitHub → produksjon på minutter, ~€20/mnd infrastruktur</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>7</span>
+    </div>
+  </div>
+
+  <!-- PAGE 8: NESTE STEG -->
+  <div class="page">
+    <div class="section-number">07</div>
+    <h2>Neste steg</h2>
+    <p class="lead">Vi er klare til å bidra til konseptskissen og forme partnerbidraget for KAIROS.</p>
+
+    <div class="cta-box">
+      <h3>Tilgjengelig nå</h3>
+      <ul>
+        <li>Bidrag til konseptskisse — frist 4. mars 2026</li>
+        <li>Plattformdemoer og arkitekturdokumentasjon på forespørsel</li>
+        <li>Detaljerte datapipeline-beskrivelser for søknaden</li>
+        <li>NCH-nettverket som dissemineringskanal i søknaden</li>
+        <li>CV-er og referanser for alle teammedlemmer</li>
+      </ul>
+    </div>
+
+    <div class="cta-box">
+      <h3>Foreslåtte neste handlinger</h3>
+      <ul>
+        <li>Kort møte for å avklare NS-rolle i konsortiet (Einar + Cathrine)</li>
+        <li>Teknisk gjennomgang av plattformportefølje med UiO/SINTEF-teamet</li>
+        <li>Cathrine Barth kobler NCH-nettverk og KAIROS-synergier</li>
+        <li>Gabriel Boen kan demonstrere teknisk arkitektur og AI-kapasiteter</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3>Kontakt</h3>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="name">Einar Kleppe Holthe</div>
+        <div class="title">CEO og strategisk leder</div>
+        <div class="email">einar@naturalstate.no</div>
+      </div>
+      <div class="contact-card">
+        <div class="name">Cathrine Barth</div>
+        <div class="title">Leder for sirkulær økonomi<br>NCH / KAIROS-synergier</div>
+        <div class="email">cathrine@naturalstate.no</div>
+      </div>
+      <div class="contact-card">
+        <div class="name">Gabriel Boen</div>
+        <div class="title">Tech lead<br>Plattformer og AI-arkitektur</div>
+        <div class="email">gabriel@naturalstate.no</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; text-align: center; color: var(--muted); font-size: 8.5pt;">
+      Natural State AS — naturalstate.no
+    </div>
+    <div class="page-footer">
+      <span>Natural State × KAIROS</span>
+      <span>8</span>
+    </div>
+  </div>
+
+</body>
+</html>
