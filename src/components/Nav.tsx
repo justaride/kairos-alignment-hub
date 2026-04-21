@@ -10,6 +10,7 @@ const links = [
   { to: '/drive-intelligence', label: 'Drive-etterretning' },
   { to: '/next-steps', label: 'Neste steg' },
   { to: '/presentation', label: 'Presentasjon' },
+  { to: '/rollebrief', label: 'NS Rollebrief' },
 ]
 
 export function Nav({ open, onClose }: { open: boolean; onClose: () => void }) {

@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Natural State i NODES — Beslutningsbrief</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      --ink: #1a211d;
+      --forest: #17362d;
+      --forest-soft: #275748;
+      --paper: #f4f1ea;
+      --surface: #fcfaf5;
+      --surface-2: #f0ece2;
+      --rust: #8c4b29;
+      --card: rgba(252, 250, 245, 0.95);
+      --border: rgba(23, 54, 45, 0.14);
+      --shadow: 0 10px 30px rgba(18, 30, 26, 0.06);
+      --title-size: clamp(1.8rem, 5vw, 4.5rem);
+      --h2-size: clamp(1.3rem, 3vw, 2.6rem);
+      --h3-size: clamp(1rem, 1.7vw, 1.35rem);
+      --body-size: clamp(0.82rem, 1.15vw, 1.06rem);
+      --small-size: clamp(0.72rem, 0.95vw, 0.9rem);
+      --slide-padding: clamp(1rem, 3.3vw, 3rem);
+      --content-gap: clamp(0.8rem, 1.8vw, 1.6rem);
+      --element-gap: clamp(0.5rem, 1vw, 0.95rem);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f4f1ea 0%, #f6f3ed 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, rgba(255,255,255,0.18), transparent 20%, transparent 80%, rgba(23,54,45,0.03));
+      opacity: 1;
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: 100%;
+      overflow: hidden;
+      padding: var(--slide-padding);
+      gap: var(--content-gap);
+      position: relative;
+    }
+
+    .eyebrow {
+      font-size: var(--small-size);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--forest-soft);
+      font-weight: 800;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Manrope', sans-serif;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    h1 {
+      font-size: var(--title-size);
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: var(--h2-size);
+      max-width: 18ch;
+    }
+
+    h3 {
+      font-size: var(--h3-size);
+    }
+
+    p, li, td, th, .label, .tag {
+      font-size: var(--body-size);
+      line-height: 1.45;
+    }
+
+    .hero-grid,
+    .split,
+    .triple {
+      display: grid;
+      gap: clamp(0.8rem, 1.5vw, 1.2rem);
+      align-items: stretch;
+    }
+
+    .hero-grid {
+      grid-template-columns: 1.35fr 0.95fr;
+    }
+
+    .split {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .triple {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: clamp(1rem, 2.1vw, 1.35rem);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .card.dark {
+      background: #18372e;
+      color: #f6f4ec;
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .card.dark .muted,
+    .card.dark .label {
+      color: rgba(246, 244, 236, 0.76);
+    }
+
+    .lead {
+      max-width: 60ch;
+      color: #35423d;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .metric {
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: clamp(1.2rem, 2vw, 2rem);
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .metric span {
+      display: block;
+      font-size: var(--small-size);
+      color: #4f625a;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--element-gap);
+      min-height: 0;
+    }
+
+    .bullet-list {
+      list-style: none;
+      display: grid;
+      gap: clamp(0.45rem, 0.9vh, 0.9rem);
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 1.3rem;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rust);
+    }
+
+    .bullet-list.compact li {
+      padding-left: 1.05rem;
+    }
+
+    .bullet-list.compact li::before {
+      width: 7px;
+      height: 7px;
+      top: 0.5rem;
+    }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .phase {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 1rem;
+    }
+
+    .phase .label {
+      font-size: var(--small-size);
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .phase h3 {
+      margin-bottom: 0.55rem;
+    }
+
+    .role-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .pill {
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      font-size: var(--small-size);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      background: var(--surface-2);
+      border: 1px solid rgba(23, 54, 45, 0.1);
+      color: var(--forest);
+    }
+
+    .table {
+      display: grid;
+      grid-template-columns: 1.05fr 1.2fr 1.05fr;
+      gap: 1px;
+      background: var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .table .cell {
+      background: var(--surface);
+      padding: 0.9rem;
+      min-height: 0;
+    }
+
+    .table .head {
+      background: #18372e;
+      color: #f6f4ec;
+      font-size: var(--small-size);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+      font-size: var(--small-size);
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .tag.hot {
+      color: var(--rust);
+      border-color: rgba(140, 75, 41, 0.16);
+      background: rgba(140, 75, 41, 0.06);
+    }
+
+    .tag.cool {
+      color: var(--forest-soft);
+      background: rgba(23, 54, 45, 0.05);
+    }
+
+    .muted {
+      color: #566962;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .timeline-step {
+      position: relative;
+      padding: 1rem;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .timeline-step::before {
+      content: attr(data-step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: #fff;
+      font-size: var(--small-size);
+      font-weight: 800;
+      margin-bottom: 0.65rem;
+    }
+
+    .nav-dots {
+      position: fixed;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      z-index: 20;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(23, 54, 45, 0.4);
+      background: rgba(255,255,255,0.55);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--rust);
+      transform: scale(1.3);
+      border-color: transparent;
+    }
+
+    .corner-note {
+      position: absolute;
+      right: var(--slide-padding);
+      bottom: var(--slide-padding);
+      font-size: var(--small-size);
+      color: rgba(26, 33, 29, 0.56);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 30px;
+      padding: 0.2rem 0.45rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      font-size: 0.8em;
+      font-weight: 700;
+    }
+
+    .footer-hint {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 20;
+      font-size: var(--small-size);
+      color: rgba(26, 33, 29, 0.56);
+      background: rgba(252, 250, 245, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.4rem 0.7rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .slide.in-view .reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide.in-view .delay-1 { transition-delay: 0.08s; }
+    .slide.in-view .delay-2 { transition-delay: 0.16s; }
+    .slide.in-view .delay-3 { transition-delay: 0.24s; }
+    .slide.in-view .delay-4 { transition-delay: 0.32s; }
+
+    @media (max-height: 700px) {
+      :root {
+        --slide-padding: clamp(0.8rem, 2.6vw, 1.8rem);
+        --content-gap: clamp(0.55rem, 1.2vw, 1rem);
+        --title-size: clamp(1.55rem, 4.2vw, 3rem);
+        --h2-size: clamp(1.15rem, 2.4vw, 1.85rem);
+      }
+    }
+
+    @media (max-height: 600px) {
+      :root {
+        --slide-padding: clamp(0.65rem, 2vw, 1.4rem);
+        --body-size: clamp(0.74rem, 0.95vw, 0.94rem);
+      }
+    }
+
+    @media (max-height: 500px) {
+      :root {
+        --slide-padding: 0.7rem;
+        --title-size: clamp(1.2rem, 3vw, 1.8rem);
+        --h2-size: clamp(1rem, 2vw, 1.35rem);
+        --body-size: 0.72rem;
+      }
+
+      .nav-dots,
+      .footer-hint {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split,
+      .triple,
+      .metric-row,
+      .phase-grid,
+      .role-map,
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .table {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.15s !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media print {
+      @page {
+        size: 1280px 720px;
+        margin: 0;
+      }
+
+      html, body {
+        overflow: visible !important;
+        height: auto !important;
+        background: var(--paper) !important;
+      }
+
+      html {
+        scroll-snap-type: none !important;
+        scroll-behavior: auto !important;
+      }
+
+      body::before {
+        display: none !important;
+      }
+
+      .slide {
+        width: 1280px !important;
+        height: 720px !important;
+        page-break-after: always;
+        break-after: page;
+        scroll-snap-align: none !important;
+        display: flex !important;
+        overflow: hidden !important;
+      }
+
+      .slide:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .nav-dots,
+      .footer-hint {
+        display: none !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-dots" aria-label="Slide navigation">
+    <a class="dot" href="#slide-1" aria-label="Slide 1"></a>
+    <a class="dot" href="#slide-2" aria-label="Slide 2"></a>
+    <a class="dot" href="#slide-3" aria-label="Slide 3"></a>
+    <a class="dot" href="#slide-4" aria-label="Slide 4"></a>
+    <a class="dot" href="#slide-5" aria-label="Slide 5"></a>
+    <a class="dot" href="#slide-6" aria-label="Slide 6"></a>
+    <a class="dot" href="#slide-7" aria-label="Slide 7"></a>
+    <a class="dot" href="#slide-8" aria-label="Slide 8"></a>
+    <a class="dot" href="#slide-9" aria-label="Slide 9"></a>
+    <a class="dot" href="#slide-10" aria-label="Slide 10"></a>
+    <a class="dot" href="#slide-11" aria-label="Slide 11"></a>
+  </nav>
+
+  <div class="footer-hint">Naviger med <span class="kbd">↓</span> <span class="kbd">↑</span> eller scroll</div>
+
+  <section class="slide" id="slide-1">
+    <div class="slide-content">
+      <div class="hero-grid">
+        <div class="stack">
+          <div class="eyebrow reveal">Natural State × NODES</div>
+          <h1 class="reveal delay-1">Hva skal vi faktisk gjøre i dette prosjektet?</h1>
+          <p class="lead reveal delay-2">
+            Kort svar: Natural State går inn som <strong>anvendelses-, pilot- og implementeringspartner</strong>.
+            Vi leverer case, data, plattformer og nettverk som gir NODES reelle brukssituasjoner og en vei fra pilot til marked.
+            AI- og forskningsmotoren ligger hos SINTEF og UiO.
+          </p>
+          <div class="pill-row reveal delay-3">
+            <span class="pill">Anvendelse</span>
+            <span class="pill">Piloter</span>
+            <span class="pill">Data og plattform</span>
+            <span class="pill">Nettverk</span>
+            <span class="pill">Marked og skalering</span>
+          </div>
+        </div>
+
+        <div class="card dark stack reveal delay-2">
+          <div class="eyebrow">Hovedkonklusjon</div>
+          <h3>Natural State sin rolle i én setning</h3>
+          <p>
+            Vi eier anvendelse, pilotforankring, data/plattform og marked — slik at prosjektet får
+            reelle case, målbare effekter og troverdig vei til adopsjon.
+          </p>
+          <div class="metric-row">
+            <div class="metric">
+              <strong>WP6+</strong>
+              <span>Marked, men bredere</span>
+            </div>
+            <div class="metric">
+              <strong>10 MNOK</strong>
+              <span>Tentativ ramme</span>
+            </div>
+            <div class="metric">
+              <strong>60/40</strong>
+              <span>Støttegrad må låses</span>
+            </div>
+            <div class="metric">
+              <strong>3. juni</strong>
+              <span>Offisiell frist kl 13:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="corner-note">Slide 1 av 11 · rolle i klartekst</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-2">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Kontinuitet</div>
+      <h2 class="reveal delay-1">KAIROS og NODES er samme initiativ</h2>
+      <p class="lead reveal delay-2">
+        Prosjektet gikk tidligere under arbeidsnavnet KAIROS. I Grønn plattform-søknaden heter det NODES.
+        Samme kjerneteam (SINTEF + UiO), samme konsept (multi-agentisk grønn KI for det grønne skiftet),
+        utvidet konsortium. Alt mapping-arbeid NS har gjort under KAIROS-navnet er fortsatt gyldig som backing-materiale.
+      </p>
+
+      <div class="table reveal delay-2">
+        <div class="cell head">Dimensjon</div>
+        <div class="cell head">KAIROS (feb-mars 2026)</div>
+        <div class="cell head">NODES (mars 2026 →)</div>
+
+        <div class="cell"><strong>Plattformnavn</strong></div>
+        <div class="cell">KAWP — Agential World Model Generator</div>
+        <div class="cell">NAWP — Agensiell verdensbyggingsplattform</div>
+
+        <div class="cell"><strong>Lead</strong></div>
+        <div class="cell">UiO / SINTEF</div>
+        <div class="cell">SINTEF (Sagar Sen) + UiO (Bodhisattva)</div>
+
+        <div class="cell"><strong>Konsortium</strong></div>
+        <div class="cell">UiO, SINTEF, NS som interessent</div>
+        <div class="cell">+ AHO, Halogen, Rodeo, Grape, Katapult</div>
+
+        <div class="cell"><strong>Tidslinje</strong></div>
+        <div class="cell">Konsept 4. mars, full 3. juni</div>
+        <div class="cell">Skisse 3. mars, full 1. juni</div>
+
+        <div class="cell"><strong>Kjernebegreper</strong></div>
+        <div class="cell">Sense-ability, change-ability, spekulative futures</div>
+        <div class="cell">Fremsynsdemonstratorer, multi-agentisk KI, klimafremtider</div>
+      </div>
+
+      <div class="card reveal delay-3">
+        <h3>Praktisk konsekvens</h3>
+        <p>
+          Tidligere KAIROS-underlag er fortsatt relevant som backing-materiale. Assetene NS kartla da er samme grunnlag
+          som nå bringes inn i NODES — men plassert i en strukturert WP-modell med definerte partnere og tydeligere mandat.
+        </p>
+      </div>
+      <div class="corner-note">Slide 2 av 11 · prosjektkontinuitet</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-3">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Ramme</div>
+      <h2 class="reveal delay-1">Rammer og nøkkeltall</h2>
+      <p class="lead reveal delay-2">
+        Dette er det praktiske og økonomiske rammeverket NODES opererer innenfor.
+        Alle partnere må forholde seg til disse rammene når rolle, budsjett og leveranser låses.
+      </p>
+
+      <div class="split">
+        <div class="card stack reveal delay-1">
+          <h3>Utlysningen</h3>
+          <ul class="bullet-list compact">
+            <li>Grønn plattform 2026 (NFR + Innovasjon Norge + SIVA)</li>
+            <li>Total ramme: 644,5 MNOK</li>
+            <li>Støtte per prosjekt: 30-80 MNOK</li>
+            <li>Prosjektvarighet: 24-36 måneder</li>
+            <li>Offisiell frist: 3. juni 2026 kl 13:00</li>
+            <li>UiO jobber mot 1. juni som praktisk internfrist</li>
+          </ul>
+        </div>
+
+        <div class="card stack reveal delay-2">
+          <h3>Støtteregime</h3>
+          <ul class="bullet-list compact">
+            <li>SMB maks 60 % støtte / 40 % egenandel</li>
+            <li>Katapult-infrastruktur inntil 70 %</li>
+            <li>Forskningsinstitusjoner samlet maks 50 % / 40 MNOK</li>
+            <li>Skille mellom industriell forskning og eksperimentell utvikling (ulike satser)</li>
+            <li>Støtten må gå til FoU — ikke salg, markedsføring eller konsulentarbeid</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card dark reveal delay-3">
+        <h3>Praktisk konsekvens for WP6</h3>
+        <p>
+          WP6 må formuleres som <strong>FoU, markedsvalidering, resultatutnyttelse, implementeringsmetodikk og skaleringsmodell</strong>
+          — ikke som vanlig salg, markedsføring eller konsulentutvikling. Dette påvirker både språket i WP-teksten og
+          hvordan leveransene struktureres.
+        </p>
+      </div>
+
+      <div class="corner-note">Slide 3 av 11 · rammer og støtteregime</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-4">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Rolle i konsortiet</div>
+      <h2 class="reveal delay-1">Hvor passer Natural State inn i NODES?</h2>
+      <div class="triple">
+        <div class="card stack reveal delay-1">
+          <div class="tag cool">Forsknings- og teknologimotor</div>
+          <h3>SINTEF + UiO + AHO</h3>
+          <ul class="bullet-list compact">
+            <li>Eier AI-rammeverk og systemarkitektur (WP1 = SINTEF)</li>
+            <li>Eier konseptutvikling og datapraksiser (WP2 = UiO/AHO)</li>
+            <li>Definerer hvordan plattformen skal fungere faglig og teknisk</li>
+          </ul>
+        </div>
+        <div class="card stack reveal delay-2">
+          <div class="tag cool">Design, case og prototyping</div>
+          <h3>Halogen + Rodeo + Grape + Katapult</h3>
+          <ul class="bullet-list compact">
+            <li>Halogen: systemisk design og policy (WP3)</li>
+            <li>Rodeo + Grape: caseutvikling i arkitektur/urbanisme (WP4)</li>
+            <li>Katapult: virtuell prototyping (WP5)</li>
+          </ul>
+        </div>
+        <div class="card dark stack reveal delay-3">
+          <div class="tag hot">Natural State</div>
+          <h3>Anvendelse, plattform, nettverk, marked</h3>
+          <ul class="bullet-list compact">
+            <li>Eier pilotcaser og testbeds fra reelle prosjekter</li>
+            <li>Bringer data, plattformer og dokumentasjon som testgrunnlag</li>
+            <li>Aktiverer etablerte nettverk for adopsjon og spredning</li>
+            <li>Oversetter FoU til marked og kommersialisering (WP6)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="corner-note">Slide 4 av 11 · plass i konsortiet</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-5">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Mandat</div>
+      <h2 class="reveal delay-1">Natural State sitt konkrete mandat</h2>
+      <div class="split">
+        <div class="card stack reveal delay-1">
+          <h3>1. Levere pilotcaser og testarenaer</h3>
+          <ul class="bullet-list">
+            <li>Velge 1-2 case der NAWP kan testes i praksis</li>
+            <li>Bidra med case som er komplementære til de øvrige partnernes case</li>
+            <li>Definere utfordring, mål, KPIer og datagrunnlag per case</li>
+          </ul>
+        </div>
+        <div class="card stack reveal delay-2">
+          <h3>2. Bringe plattform, data og dokumentasjon</h3>
+          <ul class="bullet-list">
+            <li>Stille med relevante plattformer, datasett og dokumentstrømmer</li>
+            <li>Integrere NAWP inn mot NS sine arbeidsflater der det er relevant</li>
+            <li>Bidra med dashboard, beslutningsstøtte og implementeringspraksis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="split">
+        <div class="card stack reveal delay-3">
+          <h3>3. Eie marked, skalering og kommersialisering (WP6)</h3>
+          <ul class="bullet-list">
+            <li>Beskrive hvem løsningen er for, hvem som betaler og hvor den tas i bruk</li>
+            <li>Pakke forskningsresultatene som et fremtidig SaaS-tilbud</li>
+            <li>Bro fra FoU og pilot til forretningsmessig oppskalering</li>
+          </ul>
+        </div>
+        <div class="card stack reveal delay-4">
+          <h3>4. Aktivere nettverk og adopsjon</h3>
+          <ul class="bullet-list">
+            <li>Bruke NS sine etablerte nettverk som kanal for piloter og spredning</li>
+            <li>Koble NODES til aktører i bygg, materialer, offentlig sektor og marked</li>
+            <li>Sørge for at NODES ikke blir en ren forskningsøvelse, men får brukere</li>
+          </ul>
+        </div>
+      </div>
+      <div class="corner-note">Slide 5 av 11 · arbeidsinnhold oversatt til praksis</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-6">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Arbeidsbilde</div>
+      <h2 class="reveal delay-1">Hva betyr rollen i faktisk arbeid?</h2>
+      <div class="phase-grid">
+        <div class="phase reveal delay-1">
+          <div class="label">Nå · 30. april</div>
+          <h3>Workplan-templaten</h3>
+          <ul class="bullet-list compact">
+            <li>Caseforslag med KPIer og geografisk spredning</li>
+            <li>LOI, CV-er, budsjett-template, mal-bedriftsopplysninger</li>
+            <li>WP6-tekst som dekker anvendelse, plattform, nettverk, marked</li>
+          </ul>
+        </div>
+        <div class="phase reveal delay-2">
+          <div class="label">Ved oppstart</div>
+          <h3>Det NS må eie fra start</h3>
+          <ul class="bullet-list compact">
+            <li>Markedstilnærming, adopsjonsløp og kommersialiseringsspor</li>
+            <li>Pilotforankring og plattformintegrasjon mot NAWP</li>
+            <li>Partner- og nettverksaktivering gjennom NS sine etablerte kanaler</li>
+          </ul>
+        </div>
+        <div class="phase reveal delay-3">
+          <div class="label">Løpende over 3 år</div>
+          <h3>Den faktiske hverdagsjobben</h3>
+          <ul class="bullet-list compact">
+            <li>Holde prosjektet koblet til virkelige markeder og caser</li>
+            <li>Oversette FoU-resultater til tilbud, modeller og pilotbruk</li>
+            <li>Dokumentere effekt, relevans og vei til skalering</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card dark reveal delay-4">
+        <h3>En enkel tommelfingerregel</h3>
+        <p>
+          SINTEF og UiO bygger logikken. Halogen designer systemet. Rodeo og Grape tester i arkitektur og byutvikling.
+          Katapult prototyper virtuelt. Natural State sørger for at prosjektet blir koblet til ekte behov, ekte brukere,
+          tydelige case og en troverdig vei ut i markedet.
+        </p>
+      </div>
+      <div class="corner-note">Slide 6 av 11 · oppgaver per fase</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-7">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Leveranser</div>
+      <h2 class="reveal delay-1">Dette bør Natural State eie som konkrete leveranser</h2>
+      <div class="table reveal delay-2">
+        <div class="cell head">Område</div>
+        <div class="cell head">Hva leveransen faktisk er</div>
+        <div class="cell head">Hvorfor det er NSs jobb</div>
+
+        <div class="cell"><strong>Pilotcase</strong></div>
+        <div class="cell">1-2 case med utfordring, mål, KPIer og datagrunnlag, komplementære til øvrige partneres case</div>
+        <div class="cell">NS bringer praksis, brukskontekst og demonstratorgrunnlag</div>
+
+        <div class="cell"><strong>Data og plattform</strong></div>
+        <div class="cell">Relevante plattformer og datasett gjort tilgjengelige som testgrunnlag for NAWP</div>
+        <div class="cell">NS har operative plattformer og dokumentstrømmer ingen andre partnere har</div>
+
+        <div class="cell"><strong>Markedslogikk</strong></div>
+        <div class="cell">Målgruppe, brukerreise, verdi og forretningsmodell for NAWP som SaaS</div>
+        <div class="cell">WP6 er eksplisitt marked, skalering og kommersialisering</div>
+
+        <div class="cell"><strong>Adopsjonsplan</strong></div>
+        <div class="cell">Hvordan piloter tas i bruk, av hvem og under hvilke forutsetninger</div>
+        <div class="cell">Broen fra forskning til faktisk anvendelse</div>
+
+        <div class="cell"><strong>Nettverksaktivering</strong></div>
+        <div class="cell">NS sine etablerte nettverk brukt til å åpne dører for testing og spredning</div>
+        <div class="cell">Ingen andre partnere har tilsvarende nordisk nettverksrolle</div>
+
+        <div class="cell"><strong>Katapult-bro</strong></div>
+        <div class="cell">NS-plattformer tilgjengeliggjort som inngangspunkter for virtuell prototyping i WP5</div>
+        <div class="cell">Kobler NSs kapasitet inn i Katapults mandat uten rolleoverlapp</div>
+
+        <div class="cell"><strong>Implementeringsspor</strong></div>
+        <div class="cell">Dashboards, workflows, beslutningsstøtte og dokumentasjon bygget inn i NODES-leveransene</div>
+        <div class="cell">NSs egen praksis peker på implementering, ikke bare strategi</div>
+      </div>
+
+      <div class="card reveal delay-3">
+        <h3>Konseptuelle WP6-leveranser · rammeverk</h3>
+        <p class="muted" style="margin-bottom: 0.7rem;">
+          Seks leveransekategorier som viser hva "marked, skalering og kommersialisering" krever som arbeidspakke — uten å låse spesifikke case.
+        </p>
+        <ul class="bullet-list compact">
+          <li><strong>D6.1</strong> · Markeds- og verdikjedeanalyse (baseline)</li>
+          <li><strong>D6.2</strong> · Rammeverk for sirkulær markedsintelligens</li>
+          <li><strong>D6.3</strong> · Case-portefølje og KPI-rammeverk</li>
+          <li><strong>D6.4</strong> · Forretningsmodell og resultatutnyttelse</li>
+          <li><strong>D6.5</strong> · Pilot-valideringsrapporter</li>
+          <li><strong>D6.6</strong> · Roadmap for skalering og spredning</li>
+        </ul>
+      </div>
+      <div class="corner-note">Slide 7 av 11 · eieransvar</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-8">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Avgrensning</div>
+      <h2 class="reveal delay-1">Hva NS ikke skal eie — og hvordan WP6 må omformuleres</h2>
+      <div class="role-map">
+        <div class="card reveal delay-1">
+          <div class="tag cool">Ikke hovedansvar</div>
+          <h3>Det NS ikke bør ta på seg</h3>
+          <ul class="bullet-list compact">
+            <li>Å bygge KI-rammeverket eller systemarkitekturen (WP1 = SINTEF)</li>
+            <li>Å eie verdensmodell-logikken og datapraksiser (WP2 = UiO/AHO)</li>
+            <li>Å eie systemisk design og policy (WP3 = Halogen)</li>
+            <li>Å eie arkitekturvalidering (WP4 = Rodeo/Grape)</li>
+            <li>Å eie virtuell prototyping som kapasitet (WP5 = Katapult)</li>
+          </ul>
+        </div>
+        <div class="card dark reveal delay-2">
+          <div class="tag hot">Komplementaritet</div>
+          <h3>Der NS skiller seg fra de andre</h3>
+          <ul class="bullet-list compact">
+            <li>Halogen/Rodeo/Grape tar arkitekturspesifikke designcase. NS tar cross-portfolio.</li>
+            <li>NS sin sirkulær-bygg-portefølje og nordiske nettverk er unikt i konsortiet</li>
+            <li>NS har operative kommuneplattformer — ingen andre leverer dette inn som testbeds</li>
+            <li>Jomy oppfordrer partnere (som er konkurrenter) til å foreslå komplementære case</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal delay-3">
+        <h3>WP6 må omformuleres</h3>
+        <p>
+          Skissen sier "Marked, skalering og kommersialisering" — for smalt. NS bringer også pilotcaser, plattformer, data og nettverk.
+          Forslag til omformulering: <strong>"Anvendelse, adopsjon, marked og skalering — med case- og plattformforankring"</strong>.
+          Dette gjør rollen rasjonell og reflekterer det NS faktisk har tilbudt.
+        </p>
+      </div>
+      <div class="corner-note">Slide 8 av 11 · hva NS ikke bør eie</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-9">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Interne låsinger</div>
+      <h2 class="reveal delay-1">Dette må låses internt før NS sier endelig ja</h2>
+      <div class="timeline">
+        <div class="timeline-step reveal delay-1" data-step="1">
+          <h3>Case</h3>
+          <p class="muted">Hvilke case og KPIer skal NS forplikte seg til?</p>
+        </div>
+        <div class="timeline-step reveal delay-2" data-step="2">
+          <h3>Mandat</h3>
+          <p class="muted">Omformuleres WP6 til "anvendelse, adopsjon, marked, skalering"?</p>
+        </div>
+        <div class="timeline-step reveal delay-3" data-step="3">
+          <h3>Ressurser</h3>
+          <p class="muted">2 FTE = 2 personer × 3 år (6 årsverk) eller 2 årsverk totalt? Hvem eier?</p>
+        </div>
+        <div class="timeline-step reveal delay-4" data-step="4">
+          <h3>Økonomi</h3>
+          <p class="muted">60 % (utlysning) eller 65 % (skisse)? 10 MNOK bekreftes?</p>
+        </div>
+      </div>
+
+      <div class="card dark reveal delay-4">
+        <h3>2 FTE-tvetydigheten er ikke triviell</h3>
+        <p>
+          "2 FTEs over 3 years" kan bety 2 personer i fulltid i 3 år (= 6 årsverk) eller 2 årsverk totalt fordelt over 3 år.
+          Forskjellen er betydelig — både for ressursforpliktelse og budsjett. Må avklares før personalkostnader,
+          timesatser og egenandel låses.
+        </p>
+      </div>
+      <div class="corner-note">Slide 9 av 11 · interne beslutningspunkter</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-10">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Strategiske risikoer</div>
+      <h2 class="reveal delay-1">Strategiske spørsmål som må adresseres i fullsøknaden</h2>
+      <div class="role-map">
+        <div class="card reveal delay-1">
+          <div class="tag hot">Kritisk</div>
+          <h3>IP, data og kommersialisering</h3>
+          <p class="muted">
+            Hvem eier NAWP? Hva er NS sin background IP? Har NS kommersielle rettigheter etter prosjektet?
+            Hvilke data kan deles med UiO/SINTEF og konkurrerende industripartnere? Krever datarom-/konfidensialitetsmodell.
+          </p>
+        </div>
+        <div class="card reveal delay-2">
+          <div class="tag cool">Konsortiumsnivå</div>
+          <h3>FoU-andel i budsjettet</h3>
+          <p class="muted">
+            Forskningspartnere (SINTEF/UiO/AHO) utgjør ~55 % av støttebehovet. Utlysningen sier maks 50 % / 40 MNOK samlet.
+            Dette er grunnen til at UiO trenger flere industripartnere — NS bør ikke ukritisk utvide rolle kun for å balansere.
+          </p>
+        </div>
+        <div class="card reveal delay-3">
+          <div class="tag cool">Metodologi</div>
+          <h3>Effekt må dokumenteres</h3>
+          <p class="muted">
+            EU-taksonomi, DNSH-prinsipp og gjerne LCA må brukes for å sannsynliggjøre klima-/miljøeffekter.
+            Påstander om CO₂ og sirkularitet må ha metodisk forankring — NS kan styrke prosjektet mye her.
+          </p>
+        </div>
+        <div class="card reveal delay-4">
+          <div class="tag cool">Kontekst</div>
+          <h3>Parallelle prosjekter og eksisterende relasjoner</h3>
+          <p class="muted">
+            NS har parallelle prosjekter og en aktiv SINTEF-relasjon. Overlapp må beskrives eksplisitt for å unngå
+            duplisering av offentlig finansiering. Eksisterende relasjon gir fortrinn men krever avtaleavklaring.
+          </p>
+        </div>
+      </div>
+      <div class="corner-note">Slide 10 av 11 · strategiske avklaringer</div>
+    </div>
+  </section>
+
+  <section class="slide" id="slide-11">
+    <div class="slide-content">
+      <div class="eyebrow reveal">Anbefalt løp</div>
+      <h2 class="reveal delay-1">Slik går vi videre — med to frister</h2>
+
+      <div class="split">
+        <div class="card dark stack reveal delay-1">
+          <h3>Frist 1 · 30. april (workplan-template)</h3>
+          <ul class="bullet-list compact">
+            <li>Lever caseforslag med KPIer og estimater</li>
+            <li>Lever LOI, CV-er, budsjett-template, mal-bedriftsopplysninger</li>
+            <li>Skriv WP6-tekst som reflekterer bredere rolle (anvendelse, plattform, marked)</li>
+            <li>Flagg parallelle prosjekter og eksisterende relasjoner</li>
+          </ul>
+        </div>
+        <div class="card stack reveal delay-2">
+          <h3>Frist 2 · 3. juni kl 13:00 (fullsøknad)</h3>
+          <ul class="bullet-list compact">
+            <li>Finpuss case og tall etter Jomys førsteutkast (UiO jobber mot 1. juni internt)</li>
+            <li>Bekreft WP6-omformulering i prosjektbeskrivelsen</li>
+            <li>Lås budsjett og egenandel (6,0/4,0 ved 60 % eller 6,5/3,5 ved 65 %)</li>
+            <li>Koordiner NODES mot NS sine parallelle prosjekter og etablerte relasjoner</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal delay-3">
+        <h3>Fire interne beslutningspunkter før LOI</h3>
+        <ul class="bullet-list">
+          <li><strong>Vil vi eie WP6?</strong> Ja, hvis avgrenset til marked, skalering, sirkulær markedsstrategi, case og validering — ikke åpent mandat</li>
+          <li><strong>Hvor mye kapasitet forplikter vi?</strong> 2 FTE = 2 personer × 3 år (6 årsverk) eller 2 årsverk totalt? Må avklares før budsjett</li>
+          <li><strong>Aksepterer vi ~40 % egenandel?</strong> Ved 10 MNOK budsjett betyr det 4,0 MNOK egenandel (ikke 3,5)</li>
+          <li><strong>Hva må minimum inn i LOI?</strong> IP, data, parallelle prosjekter, rolle, budsjett, kommersielle rettigheter, konfidensialitet mellom konkurrenter</li>
+        </ul>
+      </div>
+
+      <div class="pill-row reveal delay-4">
+        <span class="pill">Case først</span>
+        <span class="pill">Ingen AI-eierrolle</span>
+        <span class="pill">WP6 må presiseres</span>
+        <span class="pill">Budsjett og støttegrad låses</span>
+        <span class="pill">IP og data avklares</span>
+        <span class="pill">Parallelle prosjekter beskrives</span>
+      </div>
+      <div class="corner-note">Slide 11 av 11 · anbefalt beslutningslinje</div>
+    </div>
+  </section>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const dots = [...document.querySelectorAll('.dot')];
+
+    function setActiveSlide(index) {
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('active', dotIndex === index);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = slides.indexOf(entry.target);
+          entry.target.classList.add('in-view');
+          setActiveSlide(index);
+        }
+      });
+    }, { threshold: 0.55 });
+
+    slides.forEach((slide) => observer.observe(slide));
+
+    document.addEventListener('keydown', (event) => {
+      const current = slides.findIndex((slide) => slide.classList.contains('in-view'));
+      if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {
+        event.preventDefault();
+        const next = Math.min(current + 1, slides.length - 1);
+        slides[next].scrollIntoView({ behavior: 'smooth' });
+      }
+      if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        event.preventDefault();
+        const prev = Math.max(current - 1, 0);
+        slides[prev].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  </script>
+</body>
+</html>
