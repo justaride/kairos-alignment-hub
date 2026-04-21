@@ -9,6 +9,7 @@ import { MutualValue } from './pages/MutualValue'
 import { DriveIntelligence } from './pages/DriveIntelligence'
 import { NextSteps } from './pages/NextSteps'
 import { Presentation } from './pages/Presentation'
+import { Rollebrief } from './pages/Rollebrief'
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="drive-intelligence" element={<DriveIntelligence />} />
           <Route path="next-steps" element={<NextSteps />} />
           <Route path="presentation" element={<Presentation />} />
+          <Route path="rollebrief" element={<Rollebrief />} />
         </Route>
       </Routes>
     </BrowserRouter>
